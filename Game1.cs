@@ -27,15 +27,15 @@ namespace TestGame
             _level = new Level();
             var e = new Entity();
             e.Position = new Vector2(100, 100);
-            e.SpriteSheet = SpriteSheets.Knight;
+            e.SpriteSheet = SpriteSheets.Knight.SpriteSheet;
             _level.AddEntity(e);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            SpriteSheets.Knight.Texture = Content.Load<Texture2D>("Factions/Knights/Troops/Warrior/Blue/Warrior_Blue");
-            
+            SpriteSheets.Init();
+            SpriteSheets.Load(Content);
             // TODO: use this.Content to load your game content here
         }
 

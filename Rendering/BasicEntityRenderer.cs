@@ -16,6 +16,11 @@ namespace TestGame.Rendering
         const int camY = 0;
         public void DrawEntity(Viewport viewport, SpriteBatch spriteBatch, GameTime gameTime, Entity entity)
         {
+            if(entity.SpriteSheet.Texture == null)
+            {
+                return;
+            }
+
             // Center of screen in pixel coords
             float centerX = viewport.Width * 0.5f;
             float centerY = viewport.Height * 0.5f;
