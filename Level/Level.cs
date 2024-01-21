@@ -12,8 +12,9 @@ namespace TestGame
 {
     internal class Level
     {
-
         private List<Entity> _entities = new List<Entity>();
+
+        private List<LevelLayer> _layers = new List<LevelLayer>();
         public Level() { }
 
         public void Update(GameTime gameTime)
@@ -24,7 +25,7 @@ namespace TestGame
             }
         }
 
-        public void Draw(Viewport viewport, SpriteBatch spriteBatch, GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (Entity entity in _entities)
             {
@@ -32,7 +33,7 @@ namespace TestGame
                 {
                     continue;
                 }
-                entity.Renderer.DrawEntity(viewport, spriteBatch, gameTime, entity);
+                entity.Renderer.DrawEntity(spriteBatch, gameTime, entity);
             }
         }
 

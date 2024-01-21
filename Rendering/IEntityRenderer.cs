@@ -10,6 +10,6 @@ namespace TestGame.Rendering
 {
     internal interface IEntityRenderer
     {
-        void DrawEntity(Viewport viewport, SpriteBatch spriteBatch, GameTime gameTime, Entity entity);
+        void DrawEntity(SpriteBatch spriteBatch, GameTime gameTime, Entity entity);
     }
 }
