@@ -6,15 +6,16 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestGame.Animation;
 
 namespace TestGame.Rendering
 {
     internal class BasicEntityRenderer : IEntityRenderer
     {
-        const int TileSize = 64;
+        const int TileSize = 128;
         const int camX = 0;
         const int camY = 0;
-        public void DrawEntity(Viewport viewport, SpriteBatch spriteBatch, GameTime gameTime, Entity entity)
+        public void DrawEntity(SpriteBatch spriteBatch, GameTime gameTime, Entity entity)
         {
             if(entity.SpriteSheet.Texture == null)
             {
@@ -22,8 +23,8 @@ namespace TestGame.Rendering
             }
 
             // Center of screen in pixel coords
-            float centerX = viewport.Width * 0.5f;
-            float centerY = viewport.Height * 0.5f;
+            float centerX = spriteBatch.GraphicsDevice.Viewport.Width * 0.5f;
+            float centerY = spriteBatch.GraphicsDevice.Viewport.Height * 0.5f;
 
             // Offset from center in world coords
             // Position the entity at the center with the center
@@ -39,7 +40,11 @@ namespace TestGame.Rendering
             float y = centerY - renderOffsetY * TileSize;
             float size = entity.Scale * TileSize;
 
-            spriteBatch.Draw(entity.SpriteSheet.Texture, new Rectangle((int)x, (int)y, (int)size, (int)size), Color.White);
+            Animation.Animation currentAnimation = SpriteSheets.Knight.Idle;
+
+            Rectangle frameBounds = currentAnimation.getFrameBounds(0);
+
+            spriteBatch.Draw(entity.SpriteSheet.Texture, new Rectangle((int)x, (int)y, (int)size, (int)size), frameBounds, Color.White);
         }
     }
 }

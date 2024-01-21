@@ -32,7 +32,7 @@ namespace TestGame.Animation
             Texture = contentManager.Load<Texture2D>(TexturePath);
         }
 
-        public Animation Animation(int x, int y, int width, int height, int numFrames, AnimationDirection direction = AnimationDirection.Horizontal)
+        public Animation Animation(int x, int y, int width, int height, int numFrames = 1, AnimationDirection direction = AnimationDirection.Horizontal)
         {
             return new Animation(this, new Rectangle(x, y, width, height), numFrames, direction);
         }

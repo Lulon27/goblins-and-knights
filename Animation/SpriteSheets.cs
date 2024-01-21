@@ -20,12 +20,26 @@ namespace TestGame.Animation
             public static readonly Animation Idle = SpriteSheet.Animation(0, 0, 192, 192, 2);
         }
 
+        public static class Sand
+        {
+            public static readonly SpriteSheet SpriteSheet = AddSpriteSheet("Terrain/Ground/Tilemap_Flat");
+            public static readonly Animation EdgeTopLeft = SpriteSheet.Animation(320, 0, 64, 64);
+            public static readonly Animation EdgeTop = SpriteSheet.Animation(384, 0, 64, 64);
+            public static readonly Animation EdgeTopRight = SpriteSheet.Animation(448, 0, 64, 64);
+            public static readonly Animation EdgeNone = SpriteSheet.Animation(384, 64, 64, 64);
+        }
+
         // Internal
 
         private static readonly List<SpriteSheet> _allSpriteSheets = new List<SpriteSheet>();
 
         private static SpriteSheet AddSpriteSheet(string texturePath)
         {
+            var existing = _allSpriteSheets.Find(e => e.TexturePath == texturePath);
+            if (existing != null)
+            {
+                return existing;
+            }
             var s = new SpriteSheet(texturePath);
             _allSpriteSheets.Add(s);
             return s;
